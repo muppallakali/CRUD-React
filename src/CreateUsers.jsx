@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {useNavigate} from "react-router-dom"
+import { API_URL } from './api'
 
 export default function CreateUser() {
     const [name,setName]=useState("")
@@ -8,7 +9,7 @@ export default function CreateUser() {
     const navigate=useNavigate()
 async function handleSubmit(e){
     e.preventDefault()
-    let res=await fetch("http://localhost:3000/abc/data",{
+    let res=await fetch(`${API_URL}/data`,{        
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({name,username,age})

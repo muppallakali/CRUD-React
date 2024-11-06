@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
+import { API_URL } from './api'
 
 export default function UpdateUser() {
     let {id}=useParams()
@@ -11,7 +12,7 @@ export default function UpdateUser() {
 
     async function handleUpdate(e){
         e.preventDefault()
-        let res=await fetch(`http://localhost:3000/abc/update/${id}`,{
+        let res=await fetch(`${API_URL}/update/${id}`,{
             method:"PUT",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({name,username,age})
@@ -24,7 +25,7 @@ export default function UpdateUser() {
     }
     
     async function handleSubmit(e){       
-        let res=await fetch(`http://localhost:3000/abc/users/${id}`)  
+        let res=await fetch(`${API_URL}/users/${id}`)  
         if (!res.ok) {
             alert('Failed to get data');
         }

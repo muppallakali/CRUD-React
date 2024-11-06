@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import {Link} from "react-router-dom"
+import { API_URL } from './api'
 
 export default function Users() {
     let [user,setuser]=useState([])
     async function fetchData(){
-        let res=await fetch("http://localhost:3000/abc/users")
+        let res=await fetch(`${API_URL}/users`)
+        
         let data=await res.json()
         setuser(data)
         console.log(user)
@@ -13,7 +15,7 @@ export default function Users() {
         const confirmed = window.confirm("Are you sure you want to delete User?");
        if(confirmed){
             try{
-                let res=await fetch(`http://localhost:3000/abc/delete/${id}`,{method:"DELETE"})
+                let res=await fetch(`${API_URL}/delete/${id}`,{method:"DELETE"})
                 if(!res.ok){
                     alert('Failed to delete user');
                 }
